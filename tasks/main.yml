@@ -1,0 +1,28 @@
+---
+- name: Display Role Details.
+  debug:
+    msg:
+      - '===================================================================='
+      - 'constrict0r.develmicro'
+      - 'Apply microcontroller developer configuration.'
+      - '===================================================================='
+
+- name: Handle emacs microcontroller setup.
+  debug:
+    msg:
+      - '--------------------------------------------------------------------'
+      - 'Main - Handling emacs microcontroller setup.'
+      - '--------------------------------------------------------------------'
+
+- name: Got 99 rules but platformio aint one.
+  get_url:
+    url: https://is.gd/sHQpGT
+    dest: /etc/udev/rules.d/99-platformio-udev.rules
+    force: true
+  become: true
+  changed_when: false
+  delegate_to: localhost
+  when: not ansible_check_mode
+
+- name: Setup emacs microcontroller plugins.
+  include_tasks: emacs-micro.yml

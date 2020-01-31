@@ -1,0 +1,22 @@
+---
+packages:
+ # Desktop packages.
+ - https://is.gd/9FiCqe
+ # Base development packages.
+ - https://is.gd/2cvaVM
+ - clang
+ - fritzing
+ - fritzing-data
+ - fritzing-parts
+ - python3
+ - python3-pip
+
+group:
+  - dialout
+
+packages_pip:
+ - platformio
+
+user_skeleton:
+ - item_path: https://gitlab.com/constrict0r/home
+   item_expand: false

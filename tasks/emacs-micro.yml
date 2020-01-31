@@ -1,0 +1,44 @@
+---
+- name: Emacs Microcontroller setup.
+  debug:
+    msg:
+      - '--------------------------------------------------------------------'
+      - 'Setup Emacs Microcontroller.'
+      - '--------------------------------------------------------------------'
+
+- name: Add emacs microcontroller configuration file.
+  get_url:
+    url: https://is.gd/UTAfWz
+    dest: "/home/{{ item }}/.emacs.d/config/micro.el"
+    owner: "{{ item }}"
+    group: "{{ item }}"
+    mode: u=rwx,g=r,o=r
+  with_items: "{{ unified }}"
+  become: true
+  when:
+    - not ansible_check_mode
+    - item.item_name is not defined
+    - not item == 'root'
+
+- name: Add emacs microcontroller configuration file using item_name.
+  get_url:
+    url: https://is.gd/UTAfWz
+    dest: "/home/{{ item.item_name }}/.emacs.d/config/micro.el"
+    owner: "{{ item.item_name }}"
+    group: "{{ item.item_name }}"
+    mode: u=rwx,g=r,o=r
+  with_items: "{{ unified }}"
+  become: true
+  when:
+    - not ansible_check_mode
+    - item.item_name is defined
+    - not item.item_name == 'root'
+
+- name: Add emacs microcontroller configuration file for root.
+  get_url:
+    url: https://is.gd/UTAfWz
+    dest: /root/.emacs.d/config/micro.el
+  become: true
+  when:
+    - not ansible_check_mode
+    - unified | regex_replace('', '') is search('root')
