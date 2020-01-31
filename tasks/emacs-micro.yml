@@ -6,6 +6,16 @@
       - 'Setup Emacs Microcontroller.'
       - '--------------------------------------------------------------------'
 
+- name: Got 99 rules but platformio aint one.
+  get_url:
+    url: https://is.gd/sHQpGT
+    dest: /etc/udev/rules.d/99-platformio-udev.rules
+    force: true
+  become: true
+  changed_when: false
+  delegate_to: localhost
+  when: not ansible_check_mode
+
 - name: Add emacs microcontroller configuration file.
   get_url:
     url: https://is.gd/UTAfWz
