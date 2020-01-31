@@ -6,10 +6,13 @@
       - 'Setup Emacs Microcontroller.'
       - '--------------------------------------------------------------------'
 
-- name: Check if /etc/udev/rules.d directory exists.
-  stat:
+- name: Ensures /etc/udev/rules.d dir exists
+  file:
     path: /etc/udev/rules.d
-  register: st_res
+    state: directory
+  become: true
+  changed_when: false
+  delegate_to: localhost
   when: not ansible_check_mode
 
 - name: Got 99 rules but platformio aint one.
