@@ -6,6 +6,12 @@
       - 'Setup Emacs Microcontroller.'
       - '--------------------------------------------------------------------'
 
+- name: Check if /etc/udev/rules.d directory exists.
+  stat:
+    path: /etc/udev/rules.d
+  register: st_res
+  when: not ansible_check_mode
+
 - name: Got 99 rules but platformio aint one.
   get_url:
     url: https://is.gd/sHQpGT
@@ -14,7 +20,10 @@
   become: true
   changed_when: false
   delegate_to: localhost
-  when: not ansible_check_mode
+  when:
+    - not ansible_check_mode
+    - st_res.stat.isdir is defined
+    - st_res.stat.isdir | bool
 
 - name: Add emacs microcontroller configuration file.
   get_url:
