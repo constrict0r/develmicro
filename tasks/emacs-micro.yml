@@ -22,7 +22,7 @@
   delegate_to: localhost
   when:
     - not ansible_check_mode
-    - st_res.stat.isdir is defined
+    - st_res.stat.exists | bool
     - st_res.stat.isdir | bool
 
 - name: Add emacs microcontroller configuration file.
