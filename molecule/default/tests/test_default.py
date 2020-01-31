@@ -44,7 +44,7 @@ def test_vim_file(host, file, content):
     assert f.user == 'mary'
 
 
-@pytest.mark.parametrize('file, [
+@pytest.mark.parametrize('file', [
   ('/home/mary/.emacs.d/config/micro.el')
 ])
 def test_emacs_file(host, file):
