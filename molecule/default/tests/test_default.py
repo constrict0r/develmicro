@@ -47,7 +47,7 @@ def test_vim_file(host, file, content):
 @pytest.mark.parametrize('file, [
   ('/home/mary/.emacs.d/config/micro.el')
 ])
-def test_emacs_file(host, file, content):
+def test_emacs_file(host, file):
     f = host.file(file)
 
     assert f.exists
