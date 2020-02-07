@@ -156,6 +156,10 @@ By default this role applies the following configuration:
 
    * ssh-askpass
 
+   * texlive-latex-base
+
+   * texlive-latex-extra
+
    * tree
 
 * Installs the microcontroller developer software:
