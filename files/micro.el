@@ -2,7 +2,8 @@
 (mapc #'(lambda (package)
   (unless (package-installed-p package)
     (package-install package)))
-    '(projectile arduino-mode platformio-mode company irony company-irony irony-eldoc)
+      '(projectile arduino-mode platformio-mode company irony
+                   company-irony irony-eldoc)
 )
 
 ;; Projectile mode, requirement for Platformio.
