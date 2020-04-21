@@ -31,7 +31,7 @@
       changed_when: false
 
   roles:
-    - role: develpy
+    - role: develmicro
       users: mary
 
   post_tasks:
